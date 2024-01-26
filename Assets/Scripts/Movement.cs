@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         // Check if the player is on the ground
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position + new Vector3(0f, 0.1f, 0f), 0.2f, groundLayer);
 
         // Player movement
         float horizontalInput = Input.GetAxis("Horizontal");
