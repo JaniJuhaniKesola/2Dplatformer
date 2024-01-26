@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Exercise2 : MonoBehaviour
 {
-    //private int i = 0;
-    // Start is called before the first frame update
+    private int _i;
+
     void Start()
     {
-        //Debug.Log("Hello World!");
+        Debug.Log("Hello World!");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //if (i <= 1000) {
-        //    Debug.Log("Frame: " + i);
-        //    i++;
-        //}
+        if (_i <= 1000) {
+            Debug.Log("Frame: " + _i);
+            _i++;
+        }
     }
 }
