@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 
 public class RbMovement : MonoBehaviour
@@ -15,11 +14,11 @@ public class RbMovement : MonoBehaviour
         _originalPosition = _rb2D.position;
     }
 
-private void FixedUpdate()
-{
-    // Check if rb y position has passed either the original or the min y coordinate and flip the bool value accordingly.
-    _movingDown = _rb2D.position.y <= minY ? false : _rb2D.position.y >= _originalPosition.y ? true : _movingDown;
-    // Move object down or up based on the bool value
-    _rb2D.MovePosition(_rb2D.position + (_movingDown ? Vector2.down : Vector2.up) * speed * Time.fixedDeltaTime);
-}
+    private void FixedUpdate()
+    {
+        // Check if rb y position has passed either the original or the min y coordinate and flip the bool value accordingly.
+        _movingDown = _rb2D.position.y <= minY ? false : _rb2D.position.y >= _originalPosition.y ? true : _movingDown;
+        // Move object down or up based on the bool value
+        _rb2D.MovePosition(_rb2D.position + (_movingDown ? Vector2.down : Vector2.up) * speed * Time.fixedDeltaTime);
+    }
 }
