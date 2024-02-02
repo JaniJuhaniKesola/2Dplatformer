@@ -26,7 +26,7 @@ namespace Platformer
     ""name"": ""InputActions"",
     ""maps"": [
         {
-            ""name"": ""New action map"",
+            ""name"": ""Game"",
             ""id"": ""b93dfd50-204e-4e78-b43c-5308af271df1"",
             ""actions"": [
                 {
@@ -50,37 +50,81 @@ namespace Platformer
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""da41ef11-2da7-49cf-9b86-8c687a163c9f"",
+                    ""name"": ""Arrows"",
+                    ""id"": ""3c18fa8f-ab12-4bcb-a323-e26d50d57b1a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""21402048-bf97-4bdf-84fb-cd643b0fe37f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5ab3be1f-e3fd-4119-a2a6-49972fa6c094"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""725df65c-aaf4-4f72-99b1-9cb1ee76c3fe"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""c344ce74-a9c3-4856-9570-02815d74c1f3"",
+                    ""name"": ""right"",
+                    ""id"": ""a0602a4a-8eca-4d6f-85a8-ba45ef95e70c"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Space"",
+                    ""id"": ""31b43911-191c-436d-b31a-3fd37020afc8"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""e8ffd75a-e7f5-45f8-852e-5e8f76bb3d85"",
+                    ""name"": ""Positive"",
+                    ""id"": ""fe57e7e0-b241-431d-b132-3764a93fae0d"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -115,10 +159,10 @@ namespace Platformer
     ],
     ""controlSchemes"": []
 }");
-            // New action map
-            m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
-            m_Newactionmap_Move = m_Newactionmap.FindAction("Move", throwIfNotFound: true);
-            m_Newactionmap_Jump = m_Newactionmap.FindAction("Jump", throwIfNotFound: true);
+            // Game
+            m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
+            m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
+            m_Game_Jump = m_Game.FindAction("Jump", throwIfNotFound: true);
             // New action map1
             m_Newactionmap1 = asset.FindActionMap("New action map1", throwIfNotFound: true);
             m_Newactionmap1_Newaction = m_Newactionmap1.FindAction("New action", throwIfNotFound: true);
@@ -180,26 +224,26 @@ namespace Platformer
             return asset.FindBinding(bindingMask, out action);
         }
 
-        // New action map
-        private readonly InputActionMap m_Newactionmap;
-        private List<INewactionmapActions> m_NewactionmapActionsCallbackInterfaces = new List<INewactionmapActions>();
-        private readonly InputAction m_Newactionmap_Move;
-        private readonly InputAction m_Newactionmap_Jump;
-        public struct NewactionmapActions
+        // Game
+        private readonly InputActionMap m_Game;
+        private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
+        private readonly InputAction m_Game_Move;
+        private readonly InputAction m_Game_Jump;
+        public struct GameActions
         {
             private @Inputs m_Wrapper;
-            public NewactionmapActions(@Inputs wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Move => m_Wrapper.m_Newactionmap_Move;
-            public InputAction @Jump => m_Wrapper.m_Newactionmap_Jump;
-            public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
+            public GameActions(@Inputs wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Move => m_Wrapper.m_Game_Move;
+            public InputAction @Jump => m_Wrapper.m_Game_Jump;
+            public InputActionMap Get() { return m_Wrapper.m_Game; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
             public bool enabled => Get().enabled;
-            public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
-            public void AddCallbacks(INewactionmapActions instance)
+            public static implicit operator InputActionMap(GameActions set) { return set.Get(); }
+            public void AddCallbacks(IGameActions instance)
             {
-                if (instance == null || m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Contains(instance)) return;
-                m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Add(instance);
+                if (instance == null || m_Wrapper.m_GameActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_GameActionsCallbackInterfaces.Add(instance);
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -208,7 +252,7 @@ namespace Platformer
                 @Jump.canceled += instance.OnJump;
             }
 
-            private void UnregisterCallbacks(INewactionmapActions instance)
+            private void UnregisterCallbacks(IGameActions instance)
             {
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
@@ -218,21 +262,21 @@ namespace Platformer
                 @Jump.canceled -= instance.OnJump;
             }
 
-            public void RemoveCallbacks(INewactionmapActions instance)
+            public void RemoveCallbacks(IGameActions instance)
             {
-                if (m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Remove(instance))
+                if (m_Wrapper.m_GameActionsCallbackInterfaces.Remove(instance))
                     UnregisterCallbacks(instance);
             }
 
-            public void SetCallbacks(INewactionmapActions instance)
+            public void SetCallbacks(IGameActions instance)
             {
-                foreach (var item in m_Wrapper.m_NewactionmapActionsCallbackInterfaces)
+                foreach (var item in m_Wrapper.m_GameActionsCallbackInterfaces)
                     UnregisterCallbacks(item);
-                m_Wrapper.m_NewactionmapActionsCallbackInterfaces.Clear();
+                m_Wrapper.m_GameActionsCallbackInterfaces.Clear();
                 AddCallbacks(instance);
             }
         }
-        public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
+        public GameActions @Game => new GameActions(this);
 
         // New action map1
         private readonly InputActionMap m_Newactionmap1;
@@ -279,7 +323,7 @@ namespace Platformer
             }
         }
         public Newactionmap1Actions @Newactionmap1 => new Newactionmap1Actions(this);
-        public interface INewactionmapActions
+        public interface IGameActions
         {
             void OnMove(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);

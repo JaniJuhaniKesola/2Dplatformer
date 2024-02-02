@@ -11,4 +11,4 @@ ScriptedImporter:
   generateWrapperCode: 1
   wrapperCodePath: Assets/Generated/InputActions.cs
   wrapperClassName: Inputs
-  wrapperCodeNamespace: 2DPlatformer
+  wrapperCodeNamespace: Platformer

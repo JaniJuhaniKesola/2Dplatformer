@@ -12,14 +12,15 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _inputReader = GetComponent<InputReader>();
-        _mover = GetComponent<Mover>;
+        _mover = GetComponent<Mover>(); // Invoke the GetComponent method
     }
-    // Start is called before the first frame update
-    
 
     // Update is called once per frame
     void Update()
     {
+        bool JumpInput = _inputReader.JumpInput;
+        _mover.Jump(JumpInput);
+
         Vector2 movement = _inputReader.Movement;
         _mover.Move(movement);
     }

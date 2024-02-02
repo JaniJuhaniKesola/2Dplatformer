@@ -15,6 +15,11 @@ public class InputReader : MonoBehaviour
     {
         get { return _movementInput; }
     }
+
+    public bool JumpInput
+    {
+        get { return _jumpInput; }
+    }
     private void Awake()
     {
         _inputs = new Inputs();
@@ -32,6 +37,7 @@ public class InputReader : MonoBehaviour
     private void Update()
     {
         _movementInput = _inputs.Game.Move.ReadValue<Vector2>();
+        _jumpInput = _inputs.Game.Jump.triggered;
     }
 }
 }

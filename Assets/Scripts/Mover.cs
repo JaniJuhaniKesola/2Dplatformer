@@ -13,5 +13,11 @@ public class Mover : MonoBehaviour
         position += new Vector2(direction.x, direction.y) * Time.deltaTime;
         transform.position = position;
     }
+    public void Jump(bool Jump)
+    {
+        if (Jump == true) {
+        Debug.Log("Jump!");
+        }
+    }
 }
 }
