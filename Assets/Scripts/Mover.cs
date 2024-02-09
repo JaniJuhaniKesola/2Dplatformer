@@ -5,7 +5,7 @@ namespace Platformer
     public class Mover : MonoBehaviour
     {
         [SerializeField]
-        private float _speed;
+        private float _speed, _jumpForce;
         private Rigidbody2D rb2d;
 
         private void Awake()
@@ -21,7 +21,7 @@ namespace Platformer
         public void Jump(bool Jump)
         {
             if (Jump) {
-                Debug.Log("Jump!");
+                rb2d.velocity = new Vector2(rb2d.velocity.x, _jumpForce);
             }
         }
     }

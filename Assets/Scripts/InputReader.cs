@@ -9,8 +9,7 @@ public class InputReader : MonoBehaviour
     private Inputs _inputs = null;
     private Vector2 _movementInput = Vector2.zero;
     private bool _jumpInput = false;
-    // Start is called before the first frame update
-
+ 
     public Vector2 Movement
     {
         get { return _movementInput; }
@@ -29,7 +28,6 @@ public class InputReader : MonoBehaviour
     {
         _inputs.Game.Enable();
     }
-    // Update is called once per frame
     void OnDisable()
     {
         _inputs.Game.Disable();
@@ -37,7 +35,7 @@ public class InputReader : MonoBehaviour
     private void Update()
     {
         _movementInput = _inputs.Game.Move.ReadValue<Vector2>();
-        _jumpInput = _inputs.Game.Jump.triggered;
+        _jumpInput = _inputs.Game.Jump.IsPressed();
     }
 }
 }
