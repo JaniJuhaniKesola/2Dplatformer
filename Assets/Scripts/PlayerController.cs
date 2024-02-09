@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Platformer {
-[RequireComponent(typeof(InputReader), typeof(Mover))]
-public class PlayerController : MonoBehaviour
-{
-    private InputReader _inputReader = null;
-    private Mover _mover = null;
-
-    private void Awake()
+    
+    [RequireComponent(typeof(InputReader), typeof(Mover))]
+    public class PlayerController : MonoBehaviour
     {
-        _inputReader = GetComponent<InputReader>();
-        _mover = GetComponent<Mover>(); // Invoke the GetComponent method
-    }
+        private InputReader _inputReader = null;
+        private Mover _mover = null;
 
-    // Update is called once per frame
-    void Update()
-    {
-        bool JumpInput = _inputReader.JumpInput;
-        _mover.Jump(JumpInput);
+        private void Awake()
+        {
+            _inputReader = GetComponent<InputReader>();
+            _mover = GetComponent<Mover>(); // Invoke the GetComponent method
+        }
 
-        Vector2 movement = _inputReader.Movement;
-        _mover.Move(movement);
+        void FixedUpdate()
+        {
+            Vector2 movement = _inputReader.Movement;
+            _mover.Move(movement);
+
+            bool JumpInput = _inputReader.JumpInput;
+            _mover.Jump(JumpInput);
+        }
     }
-}
 }
