@@ -1,28 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Platformer {
-    
-    [RequireComponent(typeof(InputReader), typeof(Mover))]
-    public class PlayerController : MonoBehaviour
-    {
-        private InputReader _inputReader = null;
-        private Mover _mover = null;
+namespace Platformer
+{
+	[RequireComponent(typeof(Rigidbody2D))]
+	public class PhysicsMover : MonoBehaviour
+	{
+		[SerializeField]
+		private float _speed, _jumpForce;
 
-        private void Awake()
+		private Rigidbody2D _rb2D;
+		private InputReader _inputReader;
+
+		private bool _isJumping = false;
+		private Vector2 _direction = Vector2.zero;
+
+		private void Awake()
+		{
+			_rb2D = GetComponent<Rigidbody2D>();
+			_inputReader = GetComponent<InputReader>();
+		}
+
+		private void Update()
+		{
+			_direction = _inputReader.Movement;
+
+			bool isJumping = _inputReader.JumpInput;
+			if (!_isJumping && isJumping)
+			{
+				_isJumping = true;
+			}
+		}
+
+		private void FixedUpdate()
+		{
+			Move(_direction);
+			if (_isJumping)
+			{
+				Jump();
+
+				// Jump input consumed
+				_isJumping = false;
+			}
+		}
+
+        private void Jump()
         {
-            _inputReader = GetComponent<InputReader>();
-            _mover = GetComponent<Mover>(); // Invoke the GetComponent method
+            Vector2 velocity = _rb2D.velocity;
+            if (_inputReader.JumpInput)
+            {
+                velocity.y += _jumpForce; // Apply jump force
+            }
+            _rb2D.velocity = velocity;
         }
 
-        void FixedUpdate()
-        {
-            Vector2 movement = _inputReader.Movement;
-            _mover.Move(movement);
 
-            bool JumpInput = _inputReader.JumpInput;
-            _mover.Jump(JumpInput);
-        }
-    }
+		private void Move(Vector2 direction)
+		{
+			Vector2 velocity = _rb2D.velocity;
+			velocity.x = direction.x * _speed;
+			_rb2D.velocity = velocity;
+		}
+	}
 }
