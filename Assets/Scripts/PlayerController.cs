@@ -50,20 +50,13 @@ namespace Platformer
 
         private void Jump()
         {
-            Vector2 velocity = _rb2D.velocity;
-            if (_inputReader.JumpInput)
-            {
-                velocity.y += _jumpForce; // Apply jump force
-            }
-            _rb2D.velocity = velocity;
-        }
-
+			_rb2D.AddForce(transform.up * _jumpForce, ForceMode2D.Impulse);
+			_isJumping = false;
+		}
 
 		private void Move(Vector2 direction)
 		{
-			Vector2 velocity = _rb2D.velocity;
-			velocity.x = direction.x * _speed;
-			_rb2D.velocity = velocity;
+			_rb2D.velocity = new Vector2(direction.x * _speed, _rb2D.velocity.y);
 		}
 	}
 }

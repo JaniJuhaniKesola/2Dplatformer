@@ -41,9 +41,9 @@ namespace Platformer
             if (_timer >= 1f)
             {
                 IncreaseScore(1);
+                Debug.Log(Score);
                 _timer -= 1f;
             }
-            Debug.Log(Score);
         }
     }
 }
