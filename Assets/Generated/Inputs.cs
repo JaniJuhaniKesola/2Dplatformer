@@ -106,6 +106,17 @@ namespace Platformer
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e7402551-96ad-4573-bed8-2c608ef0961d"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""40a2e450-4aec-4eec-ac09-9c6f5b863cdb"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
