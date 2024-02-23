@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class MoveAndDestroy : MonoBehaviour
 {
-    public Transform target; // The target object to move towards
-
-    public float speed = 5f; // Speed at which the object moves
+    [SerializeField]
+    private Transform target; // The target object to move towards
+    [SerializeField]
+    private float speed = 5f; // Speed at which the object moves
 
     void Update()
     {
