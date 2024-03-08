@@ -2,20 +2,13 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    // Set the amount of points to give
-    public int points = 10;
+    [SerializeField] private int points = 10;
 
-    // OnTriggerEnter is called when the Collider other enters the trigger
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the object entering the trigger has a tag "Player"
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            // Assuming you have a scoring system in your game
-            // You can call a method to add points here
-            // GameManager.instance.AddPoints(points);
-
-            // You can also destroy the coin after collecting it
+            GameManager.Instance.AddScore(points);
             Destroy(gameObject);
         }
     }
