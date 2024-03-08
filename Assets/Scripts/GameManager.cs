@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    
+
     private float _score;
+
+    public float Score => _score;
     
     private void Awake()
     {
@@ -21,10 +24,5 @@ public class GameManager : MonoBehaviour
     public void AddScore(float coinValue)
     {
         _score += coinValue;
-    }
-
-    public float GetScore()
-    {
-        return _score;
     }
 }

@@ -7,6 +7,6 @@ public class DisplayScore : MonoBehaviour
  
     void Update()
     {
-        _displayScore.text = "Score: " + GameManager.Instance.GetScore();
+        _displayScore.text = "Score: " + GameManager.Instance.Score;
     }
 }
