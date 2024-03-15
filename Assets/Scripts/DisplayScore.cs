@@ -3,8 +3,13 @@ using TMPro;
 
 public class DisplayScore : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _displayScore;
- 
+    private TextMeshProUGUI _displayScore;
+
+    void Start()
+    {
+        _displayScore = GetComponent<TextMeshProUGUI>();
+    }
+
     void Update()
     {
         _displayScore.text = "Score: " + GameManager.Instance.Score;

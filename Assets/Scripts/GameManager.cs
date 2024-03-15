@@ -1,14 +1,14 @@
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    private float _score;
+    private int _score;
+    private readonly string _scorePlayerPrefsKey = "Score";
 
-    public float Score => _score;
-    
+    public int Score => _score;
+
     private void Awake()
     {
         if (Instance != null)
@@ -19,10 +19,19 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        _score = PlayerPrefs.GetInt(_scorePlayerPrefsKey, 0);
     }
 
-    public void AddScore(float coinValue)
+    public void AddScore(int scoreValue)
     {
-        _score += coinValue;
+        _score += scoreValue;
+        PlayerPrefs.SetInt(_scorePlayerPrefsKey, _score);
+    }
+
+    public void ResetScore()
+    {
+        _score = 0;
+        PlayerPrefs.SetInt(_scorePlayerPrefsKey, _score);
     }
 }
