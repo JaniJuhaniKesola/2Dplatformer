@@ -1,38 +1,21 @@
 using UnityEngine;
+using TMPro;
 
 public class PauseGame : MonoBehaviour
 {
-    private bool isPaused = false;
+    [SerializeField] private TMP_Text _pauseText;
 
-    void Update()
+    public void Pause()
     {
-        // Check if 'P' key is pressed
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Time.timeScale == 1f)
         {
-            // Toggle pause state
-            isPaused = !isPaused;
-
-            // Pause or unpause the game based on the current state
-            if (isPaused)
-            {
-                Pause();
-            }
-            else
-            {
-                Unpause();
-            }
+            Time.timeScale = 0f;
+            _pauseText.enabled = true;
         }
-    }
-
-    void Pause()
-    {
-        // Pause the game by setting the time scale to 0
-        Time.timeScale = 0f;
-    }
-
-    void Unpause()
-    {
-        // Unpause the game by setting the time scale back to 1
-        Time.timeScale = 1f;
+        else
+        {
+            Time.timeScale = 1f;
+            _pauseText.enabled = false;
+        }
     }
 }

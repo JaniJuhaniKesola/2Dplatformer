@@ -3,12 +3,7 @@ using TMPro;
 
 public class DisplayScore : MonoBehaviour
 {
-    private TextMeshProUGUI _displayScore;
-
-    void Start()
-    {
-        _displayScore = GetComponent<TextMeshProUGUI>();
-    }
+    [SerializeField] private TMP_Text _displayScore;
 
     void Update()
     {
